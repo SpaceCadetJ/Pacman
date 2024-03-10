@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Pacman {
-    private int x, y; // Pacman's position
+    static public int x, y; // Pacman's position
     private Image[] images = new Image[12]; // Array to hold animation frames
     private int currentImageIndex = 0; // To cycle through animation frames
     //private Image image;
@@ -13,6 +13,22 @@ public class Pacman {
         loadImages();
         x = 100; // Initial X position
         y = 100; // Initial Y position
+    }
+
+    public void setPacX(int x){
+        this.x = x;
+    }
+
+    public int getPacX(){
+        return x;
+    }
+
+    public void setPacY(int y){
+        this.y = y;
+    }
+
+    public int getPacY(){
+        return y;
     }
 
     private void loadImages() {

@@ -20,10 +20,10 @@ public class Controller implements  MouseListener, KeyListener
 
 	
 
-	//private boolean keyLeft;
-	//private boolean keyRight;
-	//private boolean keyUp;
-	//private boolean keyDown;
+	private boolean keyLeft;
+	private boolean keyRight;
+	private boolean keyUp;
+	private boolean keyDown;
 
 
 	public Controller(Model m)
@@ -94,6 +94,37 @@ public class Controller implements  MouseListener, KeyListener
             }
             break;
 
+			case KeyEvent.VK_UP: 
+			{
+                keyUp = true;
+				Pacman.y -= 15;
+                System.out.println("Making pacman move up ");
+            }
+            break;
+
+			case KeyEvent.VK_DOWN: 
+			{
+                keyDown = true;
+				Pacman.y += 15;
+                System.out.println("Making pacman move down ");
+            }
+            break;
+
+			case KeyEvent.VK_RIGHT: 
+			{
+                keyRight = true;
+				Pacman.x += 15;
+                System.out.println("Making pacman move up ");
+            }
+            break;
+
+			case KeyEvent.VK_LEFT: 
+			{
+                keyLeft = true;
+				Pacman.x -= 15;
+                System.out.println("Making pacman move up ");
+            }
+            break;
 
         case KeyEvent.VK_C:
             model.clearWalls(); 
@@ -101,14 +132,14 @@ public class Controller implements  MouseListener, KeyListener
             System.out.println("Cleared all walls");
             break;
 
-		case KeyEvent.VK_UP:
-			view.adjustScroll(-SCROLL_AMOUNT);
-			break;
+		// case KeyEvent.VK_UP:
+		// 	view.adjustScroll(-SCROLL_AMOUNT);
+		// 	break;
 
-		case KeyEvent.VK_DOWN:
-			view.adjustScroll(SCROLL_AMOUNT);
-			break;
-			//repaint();
+		// case KeyEvent.VK_DOWN:
+		// 	view.adjustScroll(SCROLL_AMOUNT);
+		// 	break;
+		// 	//repaint();
 			
 		}	
 
@@ -119,13 +150,43 @@ public class Controller implements  MouseListener, KeyListener
 			view.repaint(); 
 		}
 
-		view.repaint();
+		//view.repaint();
 		
 	}
 
 
 	public void keyReleased(KeyEvent e)
 	{
+		switch(e.getKeyCode())
+		{
+			case KeyEvent.VK_UP: 
+			{
+				keyUp = false;
+				System.out.println("Making pacman stop ");
+			}
+			break;
+
+			case KeyEvent.VK_DOWN: 
+			{
+				keyDown = false;
+				System.out.println("Making pacman stop ");
+			}
+			break;
+
+			case KeyEvent.VK_LEFT: 
+			{
+				keyLeft = false;
+				System.out.println("Making pacman stop ");
+			}
+			break;
+
+			case KeyEvent.VK_RIGHT: 
+			{
+				keyRight = false;
+				System.out.println("Making pacman stop ");
+			}
+			break;
+		}
 	}
 
 	public void keyTyped(KeyEvent e)

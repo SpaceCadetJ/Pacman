@@ -53,8 +53,8 @@ public class View extends JPanel
 		
         ArrayList<Wall> walls = model.getWalls(); 
         for (Wall wall : walls) {
-			System.out.println("Wall at (" + wall.getX() + ", " + wall.getY() + 
-			") with size (" + wall.getW() + "x" + wall.getH() + ")");
+			//System.out.println("Wall at (" + wall.getX() + ", " + wall.getY() + 
+			//") with size (" + wall.getW() + "x" + wall.getH() + ")");
             //g.drawImage(this.wallImage, wall.getX(), wall.getY(), wall.getW(), wall.getH(), null);
 			g.drawImage(wallImage, wall.getX(), wall.getY() - scrollPosY, wall.getW(), wall.getH(), null);
         }
