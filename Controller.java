@@ -97,6 +97,7 @@ public class Controller implements  MouseListener, KeyListener
 			case KeyEvent.VK_UP: 
 			{
                 keyUp = true;
+				model.checkCollisions();
 				Pacman.y -= 15;
                 System.out.println("Making pacman move up ");
             }
@@ -105,14 +106,18 @@ public class Controller implements  MouseListener, KeyListener
 			case KeyEvent.VK_DOWN: 
 			{
                 keyDown = true;
+				// for(int i = 0; i < Model.walls.size(); i++)
+				// {}
+				model.checkCollisions();
 				Pacman.y += 15;
-                System.out.println("Making pacman move down ");
+				System.out.println("Making pacman move down ");
             }
             break;
 
 			case KeyEvent.VK_RIGHT: 
 			{
                 keyRight = true;
+				model.checkCollisions();
 				Pacman.x += 15;
                 System.out.println("Making pacman move up ");
             }
@@ -121,6 +126,7 @@ public class Controller implements  MouseListener, KeyListener
 			case KeyEvent.VK_LEFT: 
 			{
                 keyLeft = true;
+				model.checkCollisions();
 				Pacman.x -= 15;
                 System.out.println("Making pacman move up ");
             }

@@ -8,6 +8,12 @@ public class Wall {
     private int y; 
     private int w; 
     private int h; 
+    
+    @Override 
+    public String toString()
+    {
+        return "Wall (x,y) = (" + x + ", " + y + "), w = " + w + ", h = " + h;
+    }
 
   
     public Wall(int x, int y, int w, int h) {

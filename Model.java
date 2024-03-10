@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Model 
 {
 
-     private ArrayList<Wall> walls; 
+     static public ArrayList<Wall> walls; 
      private int destX, destY;
 
      private Pacman pacman;
@@ -22,6 +22,47 @@ public class Model
         return pacman; // Getter method to access Pacman from other classes
     }
 
+    public void update()
+    {
+        Pacman.update();
+    }
+
+    public void checkCollisions() {
+        for (Wall wall : walls) {
+            if (isColliding(getPacman(), wall)) {
+                resolveCollision(getPacman(), wall);
+            }
+        }
+    }
+
+    public boolean isColliding(Pacman pacman, Wall wall) {
+        // Basic AABB collision detection
+        System.out.println("Wall (x,y) = (" + wall.getX() + ", " + wall.getY() + "), w = " + wall.getW() + ", h = " + wall.getH());
+        System.out.println("Pacman (x,y) = (" + pacman.getPacX() + ", " + pacman.getPacY() + "), with width = " + pacman.getPacX() + pacman.WIDTH + " ,with height = " + pacman.getPacY() + pacman.HEIGHT);
+
+        pacman.toString();
+        walls.toString();
+        return pacman.getPacX() < wall.getX() + wall.getW() &&
+               pacman.getPacX() + pacman.WIDTH > wall.getX() &&
+               pacman.getPacY() < wall.getY() + wall.getH() &&
+               pacman.getPacY() + pacman.HEIGHT > wall.getY();
+    }
+
+    // public boolean check = isColliding(getPacman(), Wall);
+    
+    private void resolveCollision(Pacman pacman, Wall wall) {
+        // Simplified resolution logic, adjust as needed
+        if (pacman.getPrevX() + pacman.WIDTH <= wall.getX()) {
+            pacman.setPacX(wall.getX() - pacman.WIDTH); // Collision from right
+        } else if (pacman.getPrevX() >= wall.getX() + wall.getW()) {
+            pacman.setPacX(wall.getX() + wall.getW()); // Collision from left
+        }
+        if (pacman.getPrevY() + pacman.HEIGHT <= wall.getY()) {
+            pacman.setPacY(wall.getY() - pacman.HEIGHT); // Collision from bottom
+        } else if (pacman.getPrevY() >= wall.getY() + wall.getH()) {
+            pacman.setPacY(wall.getY() + wall.getH()); // Collision from top
+        }
+    }
     
     public void addWall(Wall wall) {
         walls.add(wall);
